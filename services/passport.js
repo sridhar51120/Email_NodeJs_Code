@@ -1,5 +1,6 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const GitHubStrategy = require("passport-github2").Strategy;
 const mongoose = require("mongoose");
 const keys = require("../config/keys");
 
@@ -24,15 +25,44 @@ passport.use(
     },
     (accessToken, refreshToken, profile, done) => {
       User.findOne({ googleId: profile.id }).then((existingUser) => {
-        //Synchronous action method
         if (existingUser) {
-          // we already have a record with the given profile ID
           done(null, existingUser);
         } else {
-          // we don't have a user record with this ID, make a new record!
           new User({ googleId: profile.id })
             .save()
             .then((user) => done(null, user));
+        }
+      });
+    }
+  )
+);
+
+passport.serializeUser((users, done) => {
+  done(null, users.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById(id).then((users) => {
+    done(null, users);
+  });
+});
+
+passport.use(
+  new GitHubStrategy(
+    {
+      clientID: keys.GITHUB_CLIENT_ID,
+      clientSecret: keys.GITHUB_CLIENT_SECRET,
+      callbackURL: "/auth/github/callback",
+    },
+    (accessToken, refreshToken, profile, done) => {
+      User.findOne({ githubId: profile.id }).then((existingUser) => {
+        if (existingUser) {
+          done(null, existingUser);
+        } else {
+          new User({ githubId: profile.id })
+            .save()
+            .then((users) => done(null, users));
+          console.log(profile.id);
         }
       });
     }
