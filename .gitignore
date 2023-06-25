@@ -1,2 +1,3 @@
 node_modules
-keys.js
+production_keys.js
+development_keys.js
