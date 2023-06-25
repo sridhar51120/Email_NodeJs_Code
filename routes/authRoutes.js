@@ -1,6 +1,10 @@
 const passport = require("passport");
 
 module.exports = (app) => {
+
+  app.get('/ome',(req,res)=>{
+    res.send('This is Home Page');
+  })
   app.get(
     "/auth/google",
     passport.authenticate("google", {
@@ -8,14 +12,23 @@ module.exports = (app) => {
     })
   );
 
-  app.get("/auth/google/callback", passport.authenticate("google"));
+  app.get(
+    "/auth/google/callback",
+    passport.authenticate("google"),
+    (req, res) => {
+      res.redirect("/home");
+    }
+  );
 
   app.get(
     "/auth/github",
     passport.authenticate("github", { scope: ["user:email"] })
   );
 
-  app.get("/auth/github/callback", passport.authenticate("github"));
+  app.get("/auth/github/callback", passport.authenticate("github"),
+  (req,res)=>{
+    res.redirect('/home');
+  });
 
   app.get("/api/logout", (req, res) => {
     req.logout();
