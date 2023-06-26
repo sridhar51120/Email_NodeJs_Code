@@ -38,16 +38,6 @@ passport.use(
   )
 );
 
-passport.serializeUser((users, done) => {
-  done(null, users.id);
-});
-
-passport.deserializeUser((id, done) => {
-  User.findById(id).then((users) => {
-    done(null, users);
-  });
-});
-
 passport.use(
   new GitHubStrategy(
     {
@@ -62,7 +52,7 @@ passport.use(
         } else {
           new User({ githubId: profile.id })
             .save()
-            .then((users) => done(null, users));
+            .then((user) => done(null, user));
           console.log(profile.id);
         }
       });
