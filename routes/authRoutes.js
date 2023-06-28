@@ -14,10 +14,7 @@ module.exports = (app) => {
 
   app.get(
     "/auth/google/callback",
-    passport.authenticate("google"),
-    (req, res) => {
-      res.redirect("/home");
-    }
+    passport.authenticate("google")
   );
 
   app.get(
@@ -25,10 +22,7 @@ module.exports = (app) => {
     passport.authenticate("github", { scope: ["user:email"] })
   );
 
-  app.get("/auth/github/callback", passport.authenticate("github"),
-  (req,res)=>{
-    res.redirect('/home');
-  });
+  app.get("/auth/github/callback", passport.authenticate("github"));
 
   app.get("/api/logout", (req, res) => {
     req.logout();
