@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
 
 function Landing() {
   return (
-
-    <div>Landing</div>
-    
-  )
+    <div style={{ textAlign: "center" }}>
+      <h1>Emaily!</h1>
+      Collect Feedback form your Users
+    </div>
+  );
 }
 
-export default Landing
+export default Landing;
