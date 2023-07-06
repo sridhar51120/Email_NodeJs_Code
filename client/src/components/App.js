@@ -8,16 +8,15 @@ import Dashboard from "./Dashboard";
 import SurveyNew from "./SurveyNew";
 import Landing from "./Landing";
 
-
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
   }
   render() {
     return (
-      <div>
+      <div  className="container">
         <BrowserRouter>
-          <div className="container">
+          <div>
             <Header />
             <Route exact path="/" component={Landing} />
             <Route exact path="/surveys" component={Dashboard} />
