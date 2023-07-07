@@ -20,5 +20,5 @@ root.render(
   </Provider>
 );
 
-console.log(REACT_APP_STRIPE_KEY);
-console.log('ENVIROMENT IS ',process.env.NODE_ENV);
+// console.log(process.env.REACT_APP_STRIPE_KEY);
+// console.log('ENVIROMENT IS ',process.env.NODE_ENV);
