@@ -1,7 +1,7 @@
 const passport = require("passport");
 
 module.exports = (app) => {
-  app.get("/ome", (req, res) => {
+  app.get("/home", (req, res) => {
     res.send("This is Home Page");
   });
   app.get(
