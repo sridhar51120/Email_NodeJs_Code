@@ -4,6 +4,7 @@ const coolieSession = require("cookie-session");
 const bodyParser = require('body-parser');
 const keys = require("./config/keys");
 const passport = require("passport");
+
 require("./models/User");
 require("./services/passport");
 

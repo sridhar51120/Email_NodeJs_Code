@@ -24,6 +24,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-stripe-checkout": "^2.6.3",
-    "stripe": "^12.12.0"
+    "stripe": "^12.12.0",
+    "webpack-dev-middleware": "^6.1.1"
   }
 }
